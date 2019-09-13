@@ -1,1 +1,2 @@
 echo ${domain}
+echo "test"
