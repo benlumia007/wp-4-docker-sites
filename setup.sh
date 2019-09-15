@@ -10,7 +10,7 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     fi
     mkdir -p "sites/${domain}/public_html"
 
-    if ! grep -q "${host}" /etc/hosts; then
+    if ! grep -q "${domain}.test" /etc/hosts; then
         echo "127.0.0.1     ${domain}.test" | sudo tee -a /etc/hosts
     fi
 
