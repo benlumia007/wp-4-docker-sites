@@ -20,4 +20,6 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     sed -i -e "/DB_USER/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_PASSWORD/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     rm -rf "sites/${domain}/public_html/wp-config.php-e" 
+
+    wp core download --path=sites/${domain}/public_html
 fi
