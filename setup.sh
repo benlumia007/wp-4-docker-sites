@@ -22,7 +22,7 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     rm -rf "sites/${domain}/public_html/wp-config.php-e" 
 
     wp core download --path=sites/${domain}/public_html
-    wp core install  --url="http://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --path=sites/${domain}/public_html
+    wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --path=sites/${domain}/public_html
 
     docker exec -it docker-mysql mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${domain};"
     docker exec -it docker-mysql mysql -u root -e "CREATE USER IF NOT EXISTS 'wordpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'wordpress';"
