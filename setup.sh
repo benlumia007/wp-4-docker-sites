@@ -18,6 +18,8 @@ get_hosts() {
 }
 
 for host in `get_hosts`; do 
+    echo ${host}
+    exit 1
     if grep -q "{{HOST}}" "config/nginx/${domain}.conf"; then
         sed -i -e "s/{{HOST}}/${host}/g" "config/nginx/${domain}.conf"
         rm -rf "config/nginx/${domain}.conf-e"
