@@ -27,4 +27,7 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     docker exec -it docker-mysql mysql -u root -e "CREATE USER IF NOT EXISTS 'wordpress'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'wordpress';"
     docker exec -it docker-mysql mysql -u root -e "GRANT ALL PRIVILEGES ON ${domain}.* to 'wordpress'@'%' WITH GRANT OPTION;"
     docker exec -it docker-mysql mysql -u root -e "FLUSH PRIVILEGES;"
+
+    docker exec -it docker-sandbox wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --allow-root --path=/var/www/html/${domain}/public_html
+
 fi
