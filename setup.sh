@@ -27,6 +27,4 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     sed -i -e "/DB_USER/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_PASSWORD/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     rm -rf "sites/${domain}/public_html/wp-config.php-e" 
-
-    wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --path=sites/${domain}/public_html
 fi
