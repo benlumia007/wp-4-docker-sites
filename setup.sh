@@ -22,7 +22,7 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     docker exec -it docker-mysql mysql -u root -e "FLUSH PRIVILEGES;"
 
     cp "config/templates/wp-config.php" "sites/${domain}/public_html/wp-config.php"
-    sed -i -e "/DB_HOST/s/'[^']*'/'127.0.0.1'/2" "sites/${domain}/public_html/wp-config.php"
+    sed -i -e "/DB_HOST/s/'[^']*'/'localhost'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_NAME/s/'[^']*'/'${domain}'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_USER/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_PASSWORD/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
