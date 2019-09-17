@@ -2,7 +2,7 @@
 
 if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     mkdir -p "config/nginx"
-    cp "templates/nginx.conf" "config/nginx/${domain}.conf"
+    cp "config/templates/nginx.conf" "config/nginx/${domain}.conf"
 
     if grep -q "{{DOMAIN}}" "config/nginx/${domain}.conf"; then
         sed -i -e "s/{{DOMAIN}}/${domain}/g" "config/nginx/${domain}.conf"
