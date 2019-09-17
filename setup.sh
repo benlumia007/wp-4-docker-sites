@@ -29,5 +29,5 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     rm -rf "sites/${domain}/public_html/wp-config.php-e"
 
     cp "config/templates/wordpress-compose.yml" "sites/${domain}/${domain}-compose.yml"
-    sed -i -e "s/{{DOMAIN}}/${domain}/g" "sites{$domain}/${domain}-compose.yml"
+    sed -i -e "s/{{DOMAIN}}/${domain}/g" "sites/{$domain}/${domain}-compose.yml"
 fi
