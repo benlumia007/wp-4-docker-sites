@@ -28,8 +28,8 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     sed -i -e "/DB_PASSWORD/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     rm -rf "sites/${domain}/public_html/wp-config.php-e" 
 
-    wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test"
-    wp plugin delete akismet
-    wp plugin delete hello
-    wp config shuffle-salts
+    wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --path=sites/${domain}/public_html
+    wp plugin delete akismet --path=sites/${domain}/public_html
+    wp plugin delete hello --path=sites/${domain}/public_html
+    wp config shuffle-salts --path=sites/${domain}/public_html
 fi
