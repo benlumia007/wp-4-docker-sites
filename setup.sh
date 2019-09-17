@@ -22,14 +22,9 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     docker exec -it docker-mysql mysql -u root -e "FLUSH PRIVILEGES;"
 
     cp "config/templates/wp-config.php" "sites/${domain}/public_html/wp-config.php"
-    sed -i -e "/DB_HOST/s/'[^']*'/'localhost'/2" "sites/${domain}/public_html/wp-config.php"
+    sed -i -e "/DB_HOST/s/'[^']*'/'mysql'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_NAME/s/'[^']*'/'${domain}'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_USER/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_PASSWORD/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     rm -rf "sites/${domain}/public_html/wp-config.php-e" 
-
-    wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --path=sites/${domain}/public_html
-    wp plugin delete akismet --path=sites/${domain}/public_html
-    wp plugin delete hello --path=sites/${domain}/public_html
-    wp config shuffle-salts --path=sites/${domain}/public_html
 fi
