@@ -21,10 +21,13 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     docker exec -it docker-mysql mysql -u root -e "GRANT ALL PRIVILEGES ON ${domain}.* to 'wordpress'@'%' WITH GRANT OPTION;"
     docker exec -it docker-mysql mysql -u root -e "FLUSH PRIVILEGES;"
 
-    cp "templates/wp-config.php" "sites/${domain}/public_html/wp-config.php"
+    cp "config/templates/wp-config.php" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_HOST/s/'[^']*'/'mysql'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_NAME/s/'[^']*'/'${domain}'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_USER/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     sed -i -e "/DB_PASSWORD/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
-    rm -rf "sites/${domain}/public_html/wp-config.php-e" 
+    rm -rf "sites/${domain}/public_html/wp-config.php-e"
+
+    cp "config/wordpress-compose.yml" "sites/${domain}/${domain}-compose.yml"
+    sed -i -e "s/{{DOMAIN}}/${domain}/g" "config/nginx/${domain}-comose.yml"
 fi
