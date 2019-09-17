@@ -28,6 +28,6 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     sed -i -e "/DB_PASSWORD/s/'[^']*'/'wordpress'/2" "sites/${domain}/public_html/wp-config.php"
     rm -rf "sites/${domain}/public_html/wp-config.php-e"
 
-    cp "config/wordpress-compose.yml" "sites/${domain}/${domain}-compose.yml"
+    cp "config/templates/wordpress-compose.yml" "sites/${domain}/${domain}-compose.yml"
     sed -i -e "s/{{DOMAIN}}/${domain}/g" "sites{$domain}/${domain}-compose.yml"
 fi
