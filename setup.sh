@@ -30,4 +30,5 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
 
     cp "config/templates/wordpress-compose.yml" "${domain}-compose.yml"
     sed -i -e "s/{{DOMAIN}}/${domain}/g" "${domain}-compose.yml"
+    rm -rf "${domain}-compose.yml-e"
 fi
