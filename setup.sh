@@ -13,8 +13,4 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     if ! grep -q "${domain}.test" /etc/hosts; then
         echo "127.0.0.1     ${domain}.test" | sudo tee -a /etc/hosts
     fi
-
-    cp "config/templates/wordpress-compose.yml" "${domain}-compose.yml"
-    sed -i -e "s/{{DOMAIN}}/${domain}/g" "${domain}-compose.yml"
-    rm -rf "${domain}-compose.yml-e"
 fi
