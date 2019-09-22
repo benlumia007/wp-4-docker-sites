@@ -31,5 +31,7 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     docker exec -it docker-mysql mysql -u root -e "FLUSH PRIVILEGES;"
 
     docker exec -it docker-phpfpm wp core install  --url="https://${domain}.test" --title="${site_title}" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --path=/var/www/html/${domain}/public_html --allow-root
+    docker exec -it docker-phpfpm wp plugin delete akismet --path=/var/www/html/${domain}/public_html --allow-root
+    docker exec -it docker-phpfpm wp plugin delete hello --path=/var/www/html/${domain}/public_html --allow-root
     docker exec -it docker-phpfpm wp config shuffle-salts --path=/var/www/html/${domain}/public_html --allow-root
 fi
