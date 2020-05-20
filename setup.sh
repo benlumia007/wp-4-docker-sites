@@ -12,7 +12,13 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     fi
     mkdir -p "${path}"
 
-    if ! grep -q "${domain}.test" /mnt/c/Windows/System32/drivers/etc/hosts; then
-        echo "127.0.0.1     ${domain}.test" | sudo tee -a /mnt/c/Windows/System32/drivers/etc/hosts
+    if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+        if ! grep -q "${domain}.test" /mnt/c/Windows/System32/drivers/etc/hosts; then
+            echo "127.0.0.1   ${domain}.test" | sudo tee -a /mnt/c/Windows/System32/drivers/etc/hosts
+        fi
+    else
+        if ! grep -q "dashboard.test" /etc/hosts; then
+            echo "127.0.0.1   ${domain}.test" | sudo tee -a /etc/hosts
+        fi
     fi
 fi
