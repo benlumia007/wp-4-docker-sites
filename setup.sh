@@ -12,7 +12,7 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
     fi
     mkdir -p "${path}"
 
-    if ! grep -q "${domain}.test" /etc/hosts; then
-        echo "127.0.0.1     ${domain}.test" | sudo tee -a /etc/hosts
+    if ! grep -q "${domain}.test" /mnt/c/Windows/System32/drivers/etc/hosts; then
+        echo "127.0.0.1     ${domain}.test" | sudo tee -a /mnt/c/Windows/System32/drivers/etc/hosts
     fi
 fi
