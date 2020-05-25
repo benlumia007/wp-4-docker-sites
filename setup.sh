@@ -23,7 +23,7 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
             echo "127.0.0.1   ${domain}.test" | sudo tee -a /mnt/c/Windows/System32/drivers/etc/hosts
         fi
     else
-        if ! grep -q "dashboard.test" /etc/hosts; then
+        if ! grep -q "${domain}.test" /etc/hosts; then
             echo "127.0.0.1   ${domain}.test" | sudo tee -a /etc/hosts
         fi
     fi
@@ -52,7 +52,7 @@ for php in ${preprocessors//- /$'\n'}; do
     elif [[ ${php} == "7.4" ]]; then
         if grep -q "7.2" config/nginx/${domain}.conf; then
             sed -i -e "s/7.2/${php}/g" "config/nginx/${domain}.conf"
-        elif grep -q "7.3" config/nginx/dashboard.conf; then
+        elif grep -q "7.3" config/nginx/${domain}.conf; then
             sed -i -e "s/7.3/${php}/g" "config/nginx/${domain}.conf"
         else
             sed -i -e "s/{{PHPVERSION}}/${php}/g" "config/nginx/${domain}.conf"
