@@ -16,7 +16,7 @@ if [[ ! -f "config/nginx/${domain}.conf" ]]; then
         sed -i -e "s/{{DOMAIN}}/${domain}/g" "config/nginx/${domain}.conf"
         rm -rf "config/nginx/${domain}.conf-e"
     fi
-    mkdir -p "${site}"
+    mkdir -p "${dir}"
 
     if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
         if ! grep -q "${domain}.test" /mnt/c/Windows/System32/drivers/etc/hosts; then
