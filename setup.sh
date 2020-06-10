@@ -3,8 +3,6 @@
 compose=$PWD/.global/docker-compose.yml
 path=${dir}/public_html
 
-echo ${compose}
-
-echo ${domain}
-
-echo ${path}
+if [[ ! -f "${path}/wp-config.php" ]]; then
+  echo "let's download the core ifles"
+fi
