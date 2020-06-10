@@ -3,4 +3,8 @@
 compose=$PWD/.global/docker-compose.yml
 path=${dir}/public_html
 
-echo ${domain}
+mkdir -p ${path}
+
+if [[ ! -f "${path}/wp-config.php" ]]; then
+    wp core download --path=${path}    
+fi
