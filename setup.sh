@@ -1,10 +1,5 @@
 #!/bin/bash
 
-get_preprocessor() {
-    local value=`cat ${config} | shyaml get-value preprocessor 2> /dev/null`
-    echo ${value:-$@}
-}
-
 preprocessors=`get_preprocessor`
 
 for php in ${preprocessors//- /$'\n'}; do
