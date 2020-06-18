@@ -3,7 +3,7 @@
 compose=$PWD/.global/docker-compose.yml
 path=${dir}/public_html
 
-mkdir -p ${path}
+noroot mkdir -p ${path}
 
 if [[ ! -f "${path}/wp-config.php" ]]; then
     noroot wp core download --path="${path}"
