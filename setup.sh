@@ -12,6 +12,5 @@ if [[ ! -f "${path}/wp-config.php" ]]; then
     noroot wp plugin delete akismet --path="${path}"
     noroot wp plugin delete hello --path="${path}"
     noroot wp plugin install query-monitor --path="${path}"
-    noroot wp plugin install theme-check --path="${path}"
     noroot wp config shuffle-salts --path="${path}"
 fi
