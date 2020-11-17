@@ -5,6 +5,9 @@ path=${dir}/public_html
 
 noroot mkdir -p ${path}
 
+echo ${type}
+exit 1
+
 if [[ ! -f "${path}/wp-config.php" ]]; then
     noroot wp core download --path="${path}"
     noroot wp config create --dbhost=mysql --dbname=${domain} --dbuser=wordpress --dbpass=wordpress --path="${path}"
