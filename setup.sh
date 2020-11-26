@@ -6,7 +6,7 @@ path=${dir}/public_html
 noroot mkdir -p ${path}
 
 
-if [[ "" == ${type} ]]; then
+if [[ "none" == ${type} ]]; then
     echo "Empty Site"
 elif [[ "ClassicPress" == ${type} ]]; then
     if [[ ! -f "${path}/wp-config.php" ]]; then
