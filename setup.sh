@@ -6,8 +6,9 @@ path=${dir}/public_html
 noroot mkdir -p ${path}
 
 
-
-if [[ "ClassicPress" == ${type} ]]; then
+if [[ "" == ${type} ]]; then
+    echo "Empty Site"
+elif [[ "ClassicPress" == ${type} ]]; then
     if [[ ! -f "${path}/wp-config.php" ]]; then
         noroot wp core download --path="${path}" https://github.com/ClassicPress/ClassicPress-release/archive/1.2.0.zip
         noroot wp config create --dbhost=mysql --dbname=${domain} --dbuser=classicpress --dbpass=classicpress --path="${path}"
