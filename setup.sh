@@ -24,7 +24,7 @@ else
         noroot wp plugin delete akismet --path="${path}"
         noroot wp plugin delete hello --path="${path}"
         noroot wp plugin install query-monitor --path="${path}" --activate
-        noroot wp config set --type=constant WP_DEBUG --raw true
+        noroot wp config set --type=constant WP_DEBUG --raw true --path="${path}"
         noroot wp config shuffle-salts --path="${path}"
     fi
 fi
