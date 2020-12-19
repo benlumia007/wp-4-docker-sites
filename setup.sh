@@ -25,6 +25,7 @@ else
         noroot wp plugin delete hello --path="${path}"
         noroot wp plugin install query-monitor --path="${path}" --activate
         noroot wp config set --type=constant WP_DEBUG --raw true --path="${path}"
+        noroot wp config set --type=constant DISALLOW_FILE_EDIT --raw true --path="${path}"
         noroot wp config shuffle-salts --path="${path}"
     fi
 fi
