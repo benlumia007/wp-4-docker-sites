@@ -10,7 +10,7 @@ if [[ "none" == ${type} ]]; then
     echo "Empty Site"
 elif [[ "ClassicPress" == ${type} ]]; then
     if [[ ! -f "${path}/wp-config.php" ]]; then
-        noroot wp core download --path="${path}" https://github.com/ClassicPress/ClassicPress-release/archive/1.2.0.zip
+        noroot wp core download --path="${path}" https://www.classicpress.net/latest.zip
         noroot wp config create --dbhost=mysql --dbname=${domain} --dbuser=classicpress --dbpass=classicpress --path="${path}"
         noroot wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --skip-email --quiet --path="${path}"
         noroot wp plugin install query-monitor --path="${path}" --activate
