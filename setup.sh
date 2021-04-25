@@ -27,7 +27,7 @@ else
         if [[ "${plugins}" != "none" ]]; then
           for plugin in ${plugins//- /$'\n'}; do
             if [[ "${plugin}" != "plugins" ]]; then
-              noroot wp plugin install ${plugin} --activate --quiet
+              noroot wp plugin install ${plugin} --activate --path="${path}"
             fi
           done
         fi
@@ -35,7 +35,7 @@ else
         if [[ "${themes}" != "none" ]]; then
           for theme in ${themes//- /$'\n'}; do
             if [[ "${theme}" != "themes" ]]; then
-              noroot wp theme install ${theme} --activate --quiet
+              noroot wp theme install ${theme} --activate --path="${path}"
             fi
           done
         fi
@@ -43,7 +43,7 @@ else
         if [[ "${constants}" != "none" ]]; then
           for const in ${constants//- /$'\n'}; do
             if [[ "${const}" != "constants" ]]; then
-              noroot wp config set --type=constant ${const} --raw true --quiet
+              noroot wp config set --type=constant ${const} --raw true --path="${path}"
             fi
           done
         fi
