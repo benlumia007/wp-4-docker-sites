@@ -23,12 +23,30 @@ else
         noroot wp core download --path="${path}"
         noroot wp config create --dbhost=mysql --dbname=${domain} --dbuser=wordpress --dbpass=wordpress --path="${path}"
         noroot wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --skip-email --quiet --path="${path}"
-        noroot wp plugin delete akismet --path="${path}"
-        noroot wp plugin delete hello --path="${path}"
-        noroot wp plugin install query-monitor --path="${path}" --activate
-        noroot wp config set --type=constant WP_DEBUG --raw true --path="${path}"
-        noroot wp config set --type=constant DISALLOW_FILE_EDIT --raw true --path="${path}"
-        noroot wp config shuffle-salts --path="${path}"
+
+        if [[ "${plugins}" != "none" ]]; then
+          for plugin in ${plugins//- /$'\n'}; do
+            if [[ "${plugin}" != "plugins" ]]; then
+              noroot wp plugin install ${plugin} --activate --quiet
+            fi
+          done
+        fi
+
+        if [[ "${themes}" != "none" ]]; then
+          for theme in ${themes//- /$'\n'}; do
+            if [[ "${theme}" != "themes" ]]; then
+              noroot wp theme install ${theme} --activate --quiet
+            fi
+          done
+        fi
+
+        if [[ "${constants}" != "none" ]]; then
+          for const in ${constants//- /$'\n'}; do
+            if [[ "${const}" != "constants" ]]; then
+              noroot wp config set --type=constant ${const} --raw true --quiet
+            fi
+          done
+        fi
     fi
 fi
 
