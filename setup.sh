@@ -23,7 +23,7 @@ else
         noroot wp core download --path="${path}"
         noroot wp config create --dbhost=mysql --dbname=${domain} --dbuser=wordpress --dbpass=wordpress --path="${path}"
         noroot wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --skip-email --quiet --path="${path}"
-
+        noroot wp config shuffle-salts --path="${path}"
         if [[ -d "${path}/wp-content/plugins/akismet" ]]; then
           noroot wp plugin delete akismet --path="${path}"
         fi 
