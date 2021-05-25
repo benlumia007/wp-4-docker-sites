@@ -1,1 +1,0 @@
-This file is an auto script that allows WP 4 Docker to download and install the latest WordPress
