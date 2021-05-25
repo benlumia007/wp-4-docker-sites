@@ -29,7 +29,7 @@ else
         fi 
 
         if [[ -f "${path}/wp-content/plugins/hello.php" ]]; then
-          noroot wp plugin delete hello-dolly --path="${path}"
+          noroot wp plugin delete hello --path="${path}"
         fi 
 
         if [[ "${plugins}" != "none" ]]; then
