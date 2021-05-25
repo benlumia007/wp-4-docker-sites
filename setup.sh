@@ -25,11 +25,11 @@ else
         noroot wp core install  --url="https://${domain}.test" --title="${domain}.test" --admin_user=admin --admin_password=password --admin_email="admin@${domain}.test" --skip-email --quiet --path="${path}"
 
         if [[ -d "${path}/wp-content/plugins/akismet" ]]; then
-          wp plugin delete akismet
+          noroot wp plugin delete akismet
         fi 
 
         if [[ -f "${path}/wp-content/plugins/hello.php" ]]; then
-          wp plugin delete hello-dolly
+          noroot wp plugin delete hello-dolly
         fi 
 
         if [[ "${plugins}" != "none" ]]; then
